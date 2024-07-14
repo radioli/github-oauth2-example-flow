@@ -35,13 +35,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    #requests.get(authorize_url, params=payload)
-    # GET /login/oauth/authorize?response_type=code&client_id=clientId&redirect_uri=http%3A%2F%2F127.0.0.1%3A8080%2Fredirect&scope=repo&state=0d6736b3795fd48a72a32f7c67df30a1 HTTP/2\nHost: github.com
     auth_req = authorize_url+'?'+urlencode(payload)
     return redirect(auth_req)
 
 
-# github odsyla nam code i state GET /redirect?code=17e4a24ed098a5a54998&state=0d6736b3795fd48a72a32f7c67df30a
 @app.route("/redirect")
 def redirect_github_url():
     code = request.args['code']
